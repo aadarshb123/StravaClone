@@ -64,3 +64,11 @@ yarn-error.log
 
 # testing
 /coverage
+
+# Environment variables
+.env
+.env.local
+
+# Firebase
+android/app/google-services.json
+ios/GoogleService-Info.plist
