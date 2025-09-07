@@ -98,6 +98,14 @@ const ActivitiesScreen = () => {
         </Text>
       </View>
       
+      {item.startTime && item.stopTime && (
+        <View style={styles.timeContainer}>
+          <Text style={styles.timeText}>
+            {format(new Date(item.startTime), 'HH:mm')} - {format(new Date(item.stopTime), 'HH:mm')}
+          </Text>
+        </View>
+      )}
+      
       <View style={styles.activityStats}>
         <View style={styles.stat}>
           <Text style={styles.statValue}>{item.distance}</Text>
@@ -204,6 +212,15 @@ const styles = StyleSheet.create({
     width: 1,
     backgroundColor: '#e0e0e0',
     marginHorizontal: 10,
+  },
+  timeContainer: {
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  timeText: {
+    fontSize: 14,
+    color: '#666',
+    fontStyle: 'italic',
   },
   emptyContainer: {
     flex: 1,

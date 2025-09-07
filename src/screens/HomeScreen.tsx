@@ -26,6 +26,7 @@ const HomeScreen = () => {
   const [currentLocation, setCurrentLocation] = useState<Location | null>(null);
   const [lastLocation, setLastLocation] = useState<Location | null>(null);
   const [pace, setPace] = useState(0);
+  const [startTime, setStartTime] = useState<Date | null>(null);
   
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const watchIdRef = useRef<number | null>(null);
@@ -166,6 +167,7 @@ const HomeScreen = () => {
     if (!isRecording) {
       // Start recording
       setIsRecording(true);
+      setStartTime(new Date());
       setDuration(0);
       setDistance(0);
       setLastLocation(null);
@@ -180,14 +182,18 @@ const HomeScreen = () => {
         setDuration(0);
         setDistance(0);
         setLastLocation(null);
+        setStartTime(null);
       }
     }
   };
 
   const saveActivity = async () => {
+    const stopTime = new Date();
     const activity = {
       id: Date.now().toString(),
-      date: new Date().toISOString(),
+      date: stopTime.toISOString(),
+      startTime: startTime?.toISOString() || new Date().toISOString(),
+      stopTime: stopTime.toISOString(),
       duration,
       distance: distance.toFixed(2),
       type: 'Run',
@@ -231,6 +237,7 @@ const HomeScreen = () => {
     setDistance(0);
     setLastLocation(null);
     setPace(0);
+    setStartTime(null);
   };
 
   return (

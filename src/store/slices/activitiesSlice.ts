@@ -3,6 +3,8 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 export interface Activity {
   id: string;
   date: string;
+  startTime?: string;
+  stopTime?: string;
   duration: number;
   distance: string;
   type: string;
