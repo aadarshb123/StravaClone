@@ -344,8 +344,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#d32f2f',
   },
   buttonText: {
-    color: '#fff',
-    fontSize: 24,
+    color: '#e0d2d',
+    fontSize: 30,
     fontWeight: 'bold',
   },
   recordingIndicator: {
