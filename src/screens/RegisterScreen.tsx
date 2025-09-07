@@ -67,15 +67,44 @@ const RegisterScreen = ({navigation}: any) => {
       }));
       
     } catch (error: any) {
-      let errorMessage = 'Registration failed';
-      if (error.code === 'auth/email-already-in-use') {
-        errorMessage = 'This email is already registered';
-      } else if (error.code === 'auth/invalid-email') {
-        errorMessage = 'Invalid email address';
-      } else if (error.code === 'auth/weak-password') {
-        errorMessage = 'Password is too weak';
+      console.error('Registration error:', error);
+      
+      // If Firebase fails, use demo mode
+      if (error.code === 'auth/configuration-not' || error.message?.includes('CONFIGURATION_NOT_FOUND')) {
+        Alert.alert(
+          'Demo Mode', 
+          'Firebase is not configured. Using demo mode. Your data will not be saved.',
+          [
+            {
+              text: 'Continue',
+              onPress: () => {
+                // Set demo user
+                dispatch(setUser({
+                  id: 'demo-' + Date.now(),
+                  email: email,
+                  name: name,
+                }));
+              }
+            },
+            {
+              text: 'Cancel',
+              style: 'cancel'
+            }
+          ]
+        );
+      } else {
+        let errorMessage = 'Registration failed';
+        if (error.code === 'auth/email-already-in-use') {
+          errorMessage = 'This email is already registered';
+        } else if (error.code === 'auth/invalid-email') {
+          errorMessage = 'Invalid email address';
+        } else if (error.code === 'auth/weak-password') {
+          errorMessage = 'Password is too weak';
+        } else if (error.message) {
+          errorMessage = error.message;
+        }
+        Alert.alert('Registration Error', errorMessage);
       }
-      Alert.alert('Registration Error', errorMessage);
     } finally {
       setLoading(false);
     }

@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:670486981351:android:YOUR_ANDROID_APP_ID",
+        "mobilesdk_app_id": "1:670486981351:android:7f886a8061180e16205042",
         "android_client_info": {
           "package_name": "com.stravaclone"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBsZXyHHMLUaR6RpJPMvFDpRO4fo9PiZRw"
+          "current_key": "AIzaSyAi80d5sRqflfgdofwMjAFSzlwEZb9fK2s"
         }
       ],
       "services": {
